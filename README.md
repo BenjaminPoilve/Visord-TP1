@@ -551,11 +551,11 @@ Le seuil est determiné de manière empirique et peut donner de bons résultats 
 
 Et dans un exemple en LAB:
 
-![](images/LAbdetection.jpg)
+![](images/LABdetection.jpg)
 
 et 
 
-![](images/badLABdetection.jpg)
+![](images/badLAbdetection.jpg)
 
 On voit que le resultat est grandement dépendant de l'image. Dès que le background n'est pas très marqué, le detecteur est bien moins fiable. 
 
@@ -574,7 +574,7 @@ Par exemple pour les photos "neutres, on peut arriver à d'excellent résultats 
 
 Je propose deux points d'amelioration
 
-* Appliquer un floux gaussien avant traitement limite un certain nombre d'erreurs
+* Appliquer un flou gaussien avant traitement limite un certain nombre d'erreurs
 * Un niveau dynamique de detection devrait etre mis en place en essayant le seuil sur des photos connues et en tentant de touver le niveaux de sueuillage diminuant au plus le nombre d'erreurs.
 
 
