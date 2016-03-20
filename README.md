@@ -551,7 +551,7 @@ Le seuil est determiné de manière empirique et peut donner de bons résultats 
 
 Et dans un exemple en LAB:
 
-![](images/LABdetection.jpg)
+![](images/LAbdetection.jpg)
 
 et 
 
@@ -579,4 +579,39 @@ Je propose deux points d'amelioration
 
 
 
-##Detection de visages par l’approche de Viola Jones
+##Detection de visages par l’approche de Viola JonesOn implemente l'algorithme de Viola-Jones comme suit:
+
+````python
+import numpy as np
+import cv2
+
+face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
+img = cv2.imread('BaseImageUCD/Pratheepan_Dataset/FacePhoto/920480_f520.jpg')
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+for (x,y,w,h) in faces:
+    cv2.rectangle(img,(x,y),(x+w,y+h),(255,0,0),2)
+    roi_gray = gray[y:y+h, x:x+w]
+    roi_color = img[y:y+h, x:x+w]
+    eyes = eye_cascade.detectMultiScale(roi_gray)
+    for (ex,ey,ew,eh) in eyes:
+        cv2.rectangle(roi_color,(ex,ey),(ex+ew,ey+eh),(0,255,0),2)
+    cv2.imshow('img',img)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+    
+````
+ 
+ Cet algorithme donne d'excellents résultats, mais il souffres de quelques limitations:
+ 
+ * Manque de robustesse à la rotation. Il est necessaired 'avoir plusieurs classifieurs pour apprendre à reconnaitre les visages de face et de profil. 
+
+* Long temps d'apprentissage
+* Pas de methode optimale pour choisir les différents paramètres d'algorihtmes
+
+Les methodes de l'état de l'art s'orientent actuellement plus vers des méthodes de deep learning avec par exemple [DeepFace](https://research.facebook.com/publications/deepface-closing-the-gap-to-human-level-performance-in-face-verification/) qui arrive à près de  97.35% de reconnaissance sur la LFW.
+
+
+
