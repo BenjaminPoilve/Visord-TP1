@@ -371,7 +371,10 @@ if __name__ =='__main__':
 Par exemple pour l'espace LAB:
 
 #####Peau
+![](images/labfaces.png)
+
 #####Non-Peau
+![](images/labrest.png)
 
 
 L'ensemble des .csv généré pour l'ensemble de la base de données  est disponible dans le fichier TotalHist.
